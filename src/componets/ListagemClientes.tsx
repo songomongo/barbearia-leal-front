@@ -2,10 +2,10 @@ import axios from 'axios';
 import React, { Component, useState, ChangeEvent, FormEvent, useEffect } from 'react';
 
 import Styles from '../app.module.css';
-import { cadastroServiçoInterface } from '../interfaces/cadastroServiçoInterface';
-const Listagem = () => {
+import { cadastroClienteInterface } from '../interfaces/cadastroClienteInterface';
+const ListagemClientes = () => {
 
-    const [usuarios, setUsuarios] = useState<cadastroServiçoInterface[]>([]);
+    const [cliente, setCliente] = useState<cadastroClienteInterface[]>([]);
     const [pesquisa,setPesquisa]= useState<string>('')
     const [error, setError] = useState("");
 
@@ -26,7 +26,7 @@ const Listagem = () => {
                     "Content-Type":"application/json"
                 }
             }).then(function(response){
-                setUsuarios(response.data.data);
+                setCliente(response.data.data);
             }).catch(function(error){
                 console.log(error);
             })
@@ -41,8 +41,8 @@ const Listagem = () => {
     useEffect(() => {
         async function fetchData(){
             try{
-                const response = await axios.get('http://127.0.0.1:8000/api/serviço/all');
-                setUsuarios(response.data.data); 
+                const response = await axios.get('http://127.0.0.1:8000/api/cliente/all');
+                setCliente(response.data.data); 
             }catch(error){
                 setError("ocorreu um erro");
                 console.log(error);
@@ -75,27 +75,43 @@ const Listagem = () => {
                     </div>
                     <div className='card'>
                         <div className='card-body'>
-                            <h5 className='card-title'>Lista De Serviços</h5>
+                            <h5 className='card-title'>Lista De Clientes</h5>
                             <table className='table teble-hover'>
                             <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>Nome</th>
-                                    <th>descrição</th>
-                                    <th>duração</th>
-                                    <th>preço</th>
+                                    <th>Celular</th>
+                                    <th>E-mail</th>
+                                    <th>Cpf</th>
+                                    <th>Data de Nacimento</th>
+                                    <th>Cidade</th>
+                                    <th>Estado</th>
+                                    <th>Pais</th>
+                                    <th>Rua</th>
+                                    <th>Numero</th>
+                                    <th>Bairro</th>
+                                    <th>Cep</th>
                                     <th>Ações</th>
                                 </tr>
                             </thead>
                             
                             <tbody>
-                                {usuarios.map(usuario => (
-                                <tr key={usuario.id}>
-                                    <td>{usuario.id}</td>
-                                    <td>{usuario.nome}</td>
-                                    <td>{usuario.descricao}</td>
-                                    <td>{usuario.duracao}</td>
-                                    <td>{usuario.preco}</td>
+                                {cliente.map(cliente => (
+                                <tr key={cliente.id}>
+                                    <td>{cliente.id}</td>
+                                    <td>{cliente.nome}</td>
+                                    <td>{cliente.celular}</td>
+                                    <td>{cliente.email}</td>
+                                    <td>{cliente.cpf}</td>
+                                    <td>{cliente.dataNacimento}</td>
+                                    <td>{cliente.cidade}</td>
+                                    <td>{cliente.estado}</td>
+                                    <td>{cliente.pais}</td>
+                                    <td>{cliente.rua}</td>
+                                    <td>{cliente.numero}</td>
+                                    <td>{cliente.bairro}</td>
+                                    <td>{cliente.cep}</td>
                                     <td><a href="#" className='btn btn-primary btn-sm'>Editar</a>
                                     <a href="#" className='btn btn-danger btn-sm'>Excluir</a></td>
                                 </tr>
@@ -110,4 +126,4 @@ const Listagem = () => {
     );
 }
 
-export default Listagem;
+export default ListagemClientes;

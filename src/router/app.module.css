@@ -2,8 +2,9 @@
     min-height: 60vh;
     text-align: center;
     padding: 2em;
-    background-color: aquamarine;
+    background-image: url('fotos/espaco-masculino.avif');
 }
+
 
 .main h2{
     margin-bottom: 0.8em;
