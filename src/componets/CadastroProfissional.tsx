@@ -1,9 +1,10 @@
 import React, { Component, useState, ChangeEvent, FormEvent, useEffect } from 'react';
-import Footer from '../interfaces/Footer';
+
 
 import Header from "./Header";
 import Styles from '../app.module.css';
 import axios from 'axios';
+import Footer from './Footer';
 const CadastroProfissional = () => {
 
     const [nome, setNome] = useState<string>("");
