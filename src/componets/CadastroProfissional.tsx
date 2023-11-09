@@ -1,10 +1,9 @@
 import React, { Component, useState, ChangeEvent, FormEvent, useEffect } from 'react';
-
+import Footer from './Footer';
 
 import Header from "./Header";
 import Styles from '../app.module.css';
 import axios from 'axios';
-import Footer from './Footer';
 const CadastroProfissional = () => {
 
     const [nome, setNome] = useState<string>("");
@@ -52,7 +51,7 @@ const CadastroProfissional = () => {
                 console.log(response.data.error);
             }
             else{
-                window.location.href = "listagem/Profissional";
+                window.location.href = "/listagem/Profissional";
             }
         }).catch(function(error){
             console.log(error);
@@ -114,12 +113,12 @@ const CadastroProfissional = () => {
             <main className={Styles.main}>
                 <div className='container'>
                     <div className='card text-bg-secondary'>
-                        <div className='card-body '>
+                        <div className='card-body'>
                             <h5 className='card-title'>Cadastro de Profissional</h5>
                             <form onSubmit={cadastroProffssional} className='row g-4'>
                                 <div className='col-8'>
-                                    <label htmlFor="nome" className='form-label'>Nome</label>
-                                    <input type="text" name='nome' className='form-control' required onChange={handleState} />
+                                    <label htmlFor="nome" className='form-label '>Nome</label>
+                                    <input type="text" name='nome' className='form-control opacity-100' required onChange={handleState} />
                                 </div>
                                 <div className='col-4'>
                                     <label htmlFor="celular" className='form-label'>Celular</label>

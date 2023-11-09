@@ -1,10 +1,9 @@
 import React, { Component, useState, ChangeEvent, FormEvent, useEffect } from 'react';
-
+import Footer from './Footer';
 
 import Header from "./Header";
 import Styles from '../app.module.css';
 import axios from 'axios';
-import Footer from './Footer';
 const CadastroServiço = () => {
 
     const[nome, setNome] = useState<string>("");
@@ -12,7 +11,7 @@ const CadastroServiço = () => {
     const[duracao, setDuracao] = useState<string>();
     const[preco, setPreco] = useState<string>();
 
-    const cadastratServico = (e: FormEvent) => {
+    const cadastrarServico = (e: FormEvent) => {
         e.preventDefault();
         const dados={
             nome:nome,
@@ -56,7 +55,7 @@ const CadastroServiço = () => {
                     <div className='card'>
                         <div className='card-body'>
                             <h5 className='card-title'>Cadastrar um serviço</h5>
-                            <form onSubmit={cadastratServico}className='row g-4'>
+                            <form onSubmit={cadastrarServico}className='row g-4'>
                             <div className='col-6'>
                                 <label htmlFor="nome" className='form-label'>nome</label>
                                 <input type="text" name='nome' className='form-control' required  onChange={handleState}/>
