@@ -2,7 +2,7 @@ import React,{Component,useState,ChangeEvent,FormEvent,useEffect} from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import Styles from '../app.module.css';
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
 
@@ -20,14 +20,14 @@ const EditarServico =()=>{
     const atualizar = (e: FormEvent)=>{
         e.preventDefault();
 
-        const dados = {
+        const dadosDoServico = {
             nome:nome,
             descricao:descricao,
             duracao:duracao,
             preco:preco,
             id:id
         }
-        axios.put("http://127.0.0.1:8000/api/editar", dados,
+        axios.put("http://127.0.0.1:8000/api/editar", dadosDoServico,
         {
             headers:{
                 "Accept":"application/json",
@@ -44,7 +44,7 @@ const EditarServico =()=>{
     useEffect(()=> {
         async function fetchData() {
             try{
-                const response = await axios.get("http://127.0.0.1:8000/api/find/servico/"+ parametro.id);
+                const response = await axios.get("http://127.0.0.1:8000/api/find/serviço/"+ parametro.id);
                 setNome(response.data.data.nome);
                 setDescricao(response.data.data.descricao);
                 setDuracao(response.data.data.duracao);
@@ -77,10 +77,36 @@ const EditarServico =()=>{
     return(
         <div>
             <Header />
+            <nav className='navbar navbar-expand-lg navbar-dark bg-primary '>
+        <div className="container-fluid">
+            
+
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#conteudoNavbar" aria-controls="conteudoNavbar" aria-expanded="false" aria-label="Toggle Navigation">
+                <span className="navbar-toggler-icon"></span>
+            </button>
+
+            <div className="container">
+                <div className="justify-content-center" id="conteudoNavbar">
+                    <ul className="navbar-nav mr-auto mb-2 mb-lg-0 justify-content-center ">
+                        <li className="nav-item">
+                            <Link to={'/listagem/Clientes'} className="nav-link active">Listagem de Clientes</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to={'/listagem/Serviço'} className="nav-link active">Listagem de Servico</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to={"/listagem/Profissional"} className="nav-link active">Listagem de profissional</Link>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
             <main className={Styles.main}>
                 <div className='container'>
                     <div className='card'>
-                        <div className='card-body'>
+                        <div className='card-body text-bg-secondary'>
                             <h5 className='card-title'>editar Serviço</h5>
                             <form onSubmit={atualizar} className='row g-3'>
                             <div className='col-6'>
